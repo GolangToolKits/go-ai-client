@@ -1,2 +1,3 @@
-# go-ai-client
+# go-openai
+
 A Golang client for OpenAI
