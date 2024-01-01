@@ -2,8 +2,9 @@ package goopenaiclient
 
 // Client for OpenAI
 type Client struct {
-	OrgKey string
-	APIKey string
+	OrgKey  string
+	APIKey  string
+	Version string
 }
 
 // NewClient NewClient

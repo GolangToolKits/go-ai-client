@@ -52,3 +52,10 @@ type ChatResponse struct {
 	Usage             ChatUsage `json:"usage"`
 	SystemFingerprint string    `json:"system_fingerprint"`
 }
+
+// Completions Completions
+func (c *Client) Completions(r *ChatRequest) *ChatResponse {
+	var rtn ChatResponse
+
+	return &rtn
+}
