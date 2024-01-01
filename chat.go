@@ -2,10 +2,22 @@ package goopenaiclient
 
 import "time"
 
+// ChatImageURL ChatImageURL
+type ChatImageURL struct {
+	URL string `json:"url"`
+}
+
+// ChatContent ChatContent
+type ChatContent struct {
+	Type     string       `json:"type"`
+	Text     string       `json:"text"`
+	ImageURL ChatImageURL `json:"image_url"`
+}
+
 // Message Message
 type Message struct {
 	Role    string `json:"role"`
-	Content string `json:"content"`
+	Content any    `json:"content"`
 }
 
 // ChatRequest ChatRequest
