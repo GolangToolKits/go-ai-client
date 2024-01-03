@@ -26,13 +26,13 @@ type ChatRequest struct {
 
 // ChatResponse ChatResponse
 type ChatResponse struct {
-	ID                string    `json:"id"`
-	Object            string    `json:"object"`
-	Created           time.Time `json:"created"`
-	Model             string    `json:"model"`
-	Choices           []Choice  `json:"choices"`
-	Usage             ChatUsage `json:"usage"`
-	SystemFingerprint string    `json:"system_fingerprint"`
+	ID                string       `json:"id"`
+	Object            string       `json:"object"`
+	Created           time.Time    `json:"created"`
+	Model             string       `json:"model"`
+	Choices           []ChatChoice `json:"choices"`
+	Usage             ChatUsage    `json:"usage"`
+	SystemFingerprint string       `json:"system_fingerprint"`
 }
 
 // ChatTool ChatTool
@@ -145,32 +145,32 @@ type ChatToolFunction struct {
 	Arguments string `json:"arguments"`
 }
 
-// Message Message
-type Message struct {
+// ChatMessage Message
+type ChatMessage struct {
 	Role    string `json:"role"`
 	Content any    `json:"content"`
 	Name    string `json:"name"`
 }
 
-// LogprobContent LogprobContent
-type LogprobContent struct {
-	Token       string           `json:"token"`
-	Logprob     float64          `json:"logprob"`
-	Bytes       []byte           `json:"bytes"`
-	TopLogprobs []LogprobContent `json:"top_logprobs"`
+// ChatLogprobContent LogprobContent
+type ChatLogprobContent struct {
+	Token       string               `json:"token"`
+	Logprob     float64              `json:"logprob"`
+	Bytes       []byte               `json:"bytes"`
+	TopLogprobs []ChatLogprobContent `json:"top_logprobs"`
 }
 
-// Logprob Logprob
-type Logprob struct {
-	Content []LogprobContent `json:"content"`
+// ChatLogprob Logprob
+type ChatLogprob struct {
+	Content []ChatLogprobContent `json:"content"`
 }
 
-// Choice Choice
-type Choice struct {
-	Index        int64   `json:"index"`
-	Message      Message `json:"message"`
-	Logprobs     Logprob `json:"logprobs"`
-	FinishReason string  `json:"finish_reason"`
+// ChatChoice Choice
+type ChatChoice struct {
+	Index        int64       `json:"index"`
+	Message      ChatMessage `json:"message"`
+	Logprobs     ChatLogprob `json:"logprobs"`
+	FinishReason string      `json:"finish_reason"`
 }
 
 // ChatUsage ChatUsage
