@@ -5,11 +5,11 @@ import "time"
 // ChatRequest ChatRequest
 type ChatRequest struct {
 	Model            string         `json:"model"`
-	Messages         []any          `json:"messages"`          //system, user, assistant, tool or function message
+	Messages         []ChatMessage  `json:"messages"`          //system, user, assistant, tool or function message
 	FrequencyPenalty any            `json:"frequency_penalty"` //num or null
 	LogitBias        any            `json:"logit_bias"`        //map or null
 	Logprobs         any            `json:"logprobs"`          //boolean or null
-	TopLogprobs      any            `json:"top_logprobs"`      //nteger or null
+	TopLogprobs      any            `json:"top_logprobs"`      //integer or null
 	MaxTokens        any            `json:"max_tokens"`        //integer or null
 	NumberGenTokens  any            `json:"n"`                 //integer or null
 	PresencePenalty  any            `json:"presence_penalty"`  //number or null
@@ -21,7 +21,7 @@ type ChatRequest struct {
 	TopProbability   any            `json:"top_p"`       //number or null
 	Tools            []ChatTool     `json:"tools"`
 	ToolChoice       any            `json:"tool_choice"` //string or chatTool
-	User             string
+	User             string         `json:"user"`
 }
 
 // ChatResponse ChatResponse
@@ -75,7 +75,7 @@ type ChatLocation struct {
 
 // ChatRespFormat ChatRespFormat
 type ChatRespFormat struct {
-	Type string `json:"type"`
+	Type any `json:"type"`
 }
 
 // ChatImageURL ChatImageURL
@@ -97,40 +97,40 @@ type ChatImageContentParts struct {
 }
 
 // ChatSystemMessage ChatSystemMessage
-type ChatSystemMessage struct {
-	Role    string `json:"role"`
-	Content string `json:"content"`
-	Name    string `json:"name"`
-}
+// type ChatSystemMessage struct {
+// 	Role    string `json:"role"`
+// 	Content string `json:"content"`
+// 	Name    string `json:"name"`
+// }
 
 // ChatUserMessage ChatUserMessage
-type ChatUserMessage struct {
-	Role    string `json:"role"`
-	Content any    `json:"content"` //string or array of parts
-	Name    string `json:"name"`
-}
+// type ChatUserMessage struct {
+// 	Role    string `json:"role"`
+// 	Content any    `json:"content"` //string or array of parts
+// 	Name    string `json:"name"`
+// }
 
 // ChatAssistantMessage ChatAssistantMessage
-type ChatAssistantMessage struct {
-	Role      string       `json:"role"`
-	Content   any          `json:"content"` //string or null
-	Name      string       `json:"name"`
-	ToolCalls ChatToolCall `json:"tool_calls"`
-}
+// type ChatAssistantMessage struct {
+// 	Role      string       `json:"role"`
+// 	Content   any          `json:"content"` //string or null
+// 	Name      string       `json:"name"`
+// 	ToolCalls ChatToolCall `json:"tool_calls"`
+// }
 
 // ChatFunctionMessage ChatFunctionMessage
-type ChatFunctionMessage struct {
-	Role    string `json:"role"`
-	Content any    `json:"content"` //string or null
-	Name    string `json:"name"`
-}
+// type ChatFunctionMessage struct {
+// 	Role    string `json:"role"`
+// 	Content any    `json:"content"` //string or null
+// 	Name    string `json:"name"`
+// }
 
 // ChatToolMessage ChatToolMessage
-type ChatToolMessage struct {
-	Role       string `json:"role"`
-	Content    string `json:"content"`
-	ToolCallID string `json:"tool_call_id"`
-}
+// type ChatToolMessage struct {
+// 	Role       string `json:"role"`
+// 	Content    string `json:"content"`
+// 	ToolCallID string `json:"tool_call_id"`
+// }
 
 // ChatToolCall ChatToolCall
 type ChatToolCall struct {
@@ -147,9 +147,11 @@ type ChatToolFunction struct {
 
 // ChatMessage Message
 type ChatMessage struct {
-	Role    string `json:"role"`
-	Content any    `json:"content"`
-	Name    string `json:"name"`
+	Role       string         `json:"role"`
+	Content    any            `json:"content"` //string, null or array of ChatTextContentParts, ChatImageContentParts
+	Name       string         `json:"name"`
+	ToolCalls  []ChatToolCall `json:"tool_calls"`
+	ToolCallID string         `json:"tool_call_id"`
 }
 
 // ChatLogprobContent LogprobContent
