@@ -107,11 +107,11 @@ func TestChatRequestUnmarshal(t *testing.T) {
 								"text": "What’s in this image?",
 								"type": "text",
 							},
-							map[string]map[string]string{
-								"image_url": {
+							map[string]any{
+								"image_url": map[string]any{
 									"url": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/dd/Gfp-wisconsin-madison-the-nature-boardwalk.jpg/2560px-Gfp-wisconsin-madison-the-nature-boardwalk.jpg",
 								},
-								//"type": "image_url",
+								"type": "image_url",
 							},
 						},
 					},
@@ -126,7 +126,7 @@ func TestChatRequestUnmarshal(t *testing.T) {
 				//resJSON, _ := json.Marshal(got)
 				//fmt.Println("json: ", string(resJSON))
 				//fmt.Println("content: ", got.Messages[0].Content)
-				t.Errorf("ChatRequestUnmarshal() = %v, want %v", got, tt.want)
+				t.Errorf("ChatRequestUnmarshal() = %v want %v", got, tt.want)
 			}
 		})
 	}
